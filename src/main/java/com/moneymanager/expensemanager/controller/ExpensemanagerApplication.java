@@ -1,4 +1,4 @@
-package com.moneymanager.expensemanager.app;
+package com.moneymanager.expensemanager.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

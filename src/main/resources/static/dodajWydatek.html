@@ -7,9 +7,9 @@
 <body>
 <h1>Dodaj nowy wydatek</h1>
 
-<form method="post" action="newexpense">
-    <label for="nazwa"> Nazwa: <abbr title="required">*</abbr></label>
-    <input type = "text" name="nazwa"><br>
+<form method="post" action="/dodajWydatek">
+    <label for="wydatek"> Nazwa: <abbr title="required">*</abbr></label>
+    <input type = "text" name="wydatek"><br>
     <label for="cena"> Cena: <abbr title="required">*</abbr></label>
     <input type = "number" name="cena"><br>
     <label for="kategoria"> Kategoria: <abbr title="required">*</abbr></label>
@@ -21,6 +21,7 @@
         <option>rozrywka</option>
         <option>transport</option>
         <option>kosmetyki</option>
+        <option>inne</option>
     </select> <br>
     <input type = "submit" name="zapisz"><br>
 </form>

@@ -1,11 +1,11 @@
-package com.moneymanager.expensemanager.model;
+package com.moneymanager.expensemanager.controller;
 
 public class Expense {
     private String name;
     private double price;
-    private String category;
+    private Category category;
 
-    public Expense(String name, double price, String category) {
+    public Expense(String name, double price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -27,13 +27,11 @@ public class Expense {
         this.price = price;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public void setCategory(Category category) { this.category = category;}
 
     @Override
     public String toString() {

@@ -1,7 +1,11 @@
-package com.moneymanager.expensemanager.io;
+/*
+package com.moneymanager.expensemanager.controller.io;
 
-import com.moneymanager.expensemanager.model.Expense;
+import com.moneymanager.expensemanager.controller.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+@Controller
 public class NewExpense extends HttpServlet {
     private List<Expense> expenses;
 
@@ -17,7 +22,8 @@ public class NewExpense extends HttpServlet {
         this.expenses = expenses;
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    @RequestMapping ("/")
+    public void addNewExpense (@RequestParam ()) {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         String name = request.getParameter("nazwa");
@@ -32,3 +38,4 @@ public class NewExpense extends HttpServlet {
         }
     }
 }
+*/

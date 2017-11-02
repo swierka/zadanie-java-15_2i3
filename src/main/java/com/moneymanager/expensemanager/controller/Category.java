@@ -1,4 +1,4 @@
-package com.moneymanager.expensemanager.model;
+package com.moneymanager.expensemanager.controller;
 
 public enum Category {
     FOOD ("jedzenie"),
@@ -7,7 +7,8 @@ public enum Category {
     CLOTHES ("ubrania"),
     ENTERTAIMNET ("rozrywka"),
     TRANSPORT ("transport"),
-    PERSONAL_CARE ("kosmetyki");
+    PERSONAL_CARE ("kosmetyki"),
+    OTHER ("inne");
 
     private String inPolish;
 

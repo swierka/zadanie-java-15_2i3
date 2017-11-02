@@ -1,14 +1,9 @@
 package com.moneymanager.expensemanager.controller;
 
-import com.moneymanager.expensemanager.db.AllExpenses;
-import com.moneymanager.expensemanager.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -28,21 +23,30 @@ public class ExpensesController {
         return result;
     }
 
-    @RequestMapping("/dodajWydatek")
-    @ResponseBody
-    public String addExpense() {
-        return "dodajWydatek.html";
-    }
-
     @GetMapping("/wydatki")
     public List<Expense> sortList(@RequestParam String kategoria) {
         List<Expense> listExpenses = allExpenses.getAllExpenses();
         List<Expense> sortedList = allExpenses.getAllExpenses();
         for (Expense allExp : listExpenses) {
-            if (allExp.getCategory().equals(kategoria)) {
+            if (allExp.getCategory().toString().equals(kategoria)) {
                 sortedList.add(allExp);
             }
         }
         return sortedList;
+    }
+/*
+    @RequestMapping("/dodajWydatek")
+    @ResponseBody
+    public String addExpense() {
+        return "dodajWydatek.html";
+    }*/
+
+
+    @RequestMapping("/dodajWydatek")
+    public String addNewExpense(@RequestParam String wydatek, double cena, String kategoria) {
+        Category kategoriaEnum = Category.valueOf(kategoria);
+        Expense expense = new Expense(wydatek, cena, kategoriaEnum);
+        allExpenses.addToList(expense);
+        return "Dodano wydatek:" + wydatek + " "+ cena + "zl "+ "do kategorii "+kategoria;
     }
 }

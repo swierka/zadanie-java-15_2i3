@@ -1,6 +1,5 @@
-package com.moneymanager.expensemanager.db;
+package com.moneymanager.expensemanager.controller;
 
-import com.moneymanager.expensemanager.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
