@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moje wydatki</title>
+</head>
+<body>
+<h1>Dodaj nowy wydatek</h1>
+
+<form method="post" action="newexpense">
+    <label for="nazwa"> Nazwa: <abbr title="required">*</abbr></label>
+    <input type = "text" name="nazwa"><br>
+    <label for="cena"> Cena: <abbr title="required">*</abbr></label>
+    <input type = "number" name="cena"><br>
+    <label for="kategoria"> Kategoria: <abbr title="required">*</abbr></label>
+    <select name="kategoria" multiple="multiple">
+        <option>jedznie</option>
+        <option>mieszkanie</option>
+        <option>media</option>
+        <option>ubrania</option>
+        <option>rozrywka</option>
+        <option>transport</option>
+        <option>kosmetyki</option>
+    </select> <br>
+    <input type = "submit" name="zapisz"><br>
+</form>
+</body>
+</html>
