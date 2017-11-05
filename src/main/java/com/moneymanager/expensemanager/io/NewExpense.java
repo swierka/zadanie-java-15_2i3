@@ -1,7 +1,7 @@
 /*
-package com.moneymanager.expensemanager.controller.io;
+package com.moneymanager.expensemanager.io;
 
-import com.moneymanager.expensemanager.controller.model.Expense;
+import com.moneymanager.expensemanager.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

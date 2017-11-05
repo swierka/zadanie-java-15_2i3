@@ -1,4 +1,4 @@
-package com.moneymanager.expensemanager.controller;
+package com.moneymanager.expensemanager.model;
 
 public class Expense {
     private String name;

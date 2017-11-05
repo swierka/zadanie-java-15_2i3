@@ -1,4 +1,4 @@
-package com.moneymanager.expensemanager.controller;
+package com.moneymanager.expensemanager.model;
 
 public enum Category {
     FOOD ("jedzenie"),
@@ -15,4 +15,5 @@ public enum Category {
     Category(String inPolish) {
         this.inPolish = inPolish;
     }
+    Category(){};
 }

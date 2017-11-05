@@ -1,5 +1,8 @@
 package com.moneymanager.expensemanager.controller;
 
+import com.moneymanager.expensemanager.db.AllExpenses;
+import com.moneymanager.expensemanager.model.Category;
+import com.moneymanager.expensemanager.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -7,46 +10,54 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping
 public class ExpensesController {
 
     @Autowired
     private AllExpenses allExpenses;
 
-    @RequestMapping("/wydatki")
-    @ResponseBody
-    public String getAllExpenses() {
-        List<Expense> listExpenses = allExpenses.getAllExpenses();
-        String result = "";
-        for (Expense allExp : listExpenses) {
-            result += listExpenses.toString() + "</br>";
-        }
-        return result;
-    }
-
     @GetMapping("/wydatki")
-    public List<Expense> sortList(@RequestParam String kategoria) {
-        List<Expense> listExpenses = allExpenses.getAllExpenses();
-        List<Expense> sortedList = allExpenses.getAllExpenses();
-        for (Expense allExp : listExpenses) {
-            if (allExp.getCategory().toString().equals(kategoria)) {
-                sortedList.add(allExp);
-            }
-        }
-        return sortedList;
-    }
-/*
-    @RequestMapping("/dodajWydatek")
     @ResponseBody
-    public String addExpense() {
-        return "dodajWydatek.html";
-    }*/
+    public String getList(@RequestParam(required = false) String kategoria)
+    {
+        String result = "";
+        double cena = 0;
+        List<Expense> listExpenses = allExpenses.getAllExpenses();
 
+        if (kategoria == null) {
+            for (Expense allExp : listExpenses) {
+                result += listExpenses.toString() + "<br/>";
+                cena +=allExp.getPrice();
+            }
+            return result + cena;
+        } else {
+            List<Expense> filteredList = allExpenses.getAllExpenses();
+            for (Expense allExp : listExpenses) {
+                if (allExp.getCategory().equals(Category.valueOf(kategoria))) {
+                    filteredList.add(allExp);
+                    cena +=allExp.getPrice();
+                }
+            }
+            result = filteredList.toString();
+            return result + cena;
+        }
+    }
 
-    @RequestMapping("/dodajWydatek")
-    public String addNewExpense(@RequestParam String wydatek, double cena, String kategoria) {
+    @PostMapping("/add")
+    @ResponseBody
+    public String addNewExpense(@RequestParam String nazwa, double cena, String kategoria) {
         Category kategoriaEnum = Category.valueOf(kategoria);
-        Expense expense = new Expense(wydatek, cena, kategoriaEnum);
+        Expense expense = new Expense(nazwa, cena, kategoriaEnum);
         allExpenses.addToList(expense);
-        return "Dodano wydatek:" + wydatek + " "+ cena + "zl "+ "do kategorii "+kategoria;
+        return "Dodano wydatek: " + nazwa + " "+ cena + "zl";
     }
 }
+
+/*
+ for(Expenses expense:expenses)
+   if(kategoria==null || expense.getCategory().equals(kategoria)){
+   result+=expense.toString()+<br/>;
+   cena+=expense.getPrice();
+*/
+
+
