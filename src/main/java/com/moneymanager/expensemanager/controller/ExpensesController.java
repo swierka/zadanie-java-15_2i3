@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,23 +24,22 @@ public class ExpensesController {
         String result = "";
         double cena = 0;
         List<Expense> listExpenses = allExpenses.getAllExpenses();
+        List<Expense> filteredList = new ArrayList<>();
 
         if (kategoria == null) {
             for (Expense allExp : listExpenses) {
-                result += listExpenses.toString() + "<br/>";
+                /*result += listExpenses.toString() + "<br/>";*/
                 cena +=allExp.getPrice();
             }
-            return result + cena;
+            return listExpenses.toString()+ "<br/>" +"Calkowita kwota "+ cena;
         } else {
-            List<Expense> filteredList = allExpenses.getAllExpenses();
             for (Expense allExp : listExpenses) {
                 if (allExp.getCategory().equals(Category.valueOf(kategoria))) {
                     filteredList.add(allExp);
                     cena +=allExp.getPrice();
                 }
             }
-            result = filteredList.toString();
-            return result + cena;
+            return filteredList.toString() + "<br/>" + "Calkowita kwota "+cena;
         }
     }
 
